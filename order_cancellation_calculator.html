@@ -1,10 +1,215 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Order Cancellation Calculator</title>
+    <link href="//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style/stylesheet.css" rel="stylesheet">
 </head>
 <body>
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<div class="container">
+    <table class="table table-bordered align-middle">
+        <tr class="table-active">
+            <td class="text-center"><input id="allCheck" type="checkbox" class="optCheck"></td>
+            <td class="text-center bold">발주번호</td>
+            <td class="text-center bold">벤더사</td>
+            <td class="text-center bold">상품명</td>
+            <td class="text-center bold">옵션명</td>
+            <td class="text-center bold">단가</td>
+            <td class="text-center bold">수량</td>
+            <td class="text-center bold">주문금액</td>
+            <td class="text-center bold">상품<br>쿠폰할인</td>
+            <td class="text-center bold">장바구니<br>쿠폰할인</td>
+            <td class="text-center bold">사용<br>적립금</td>
+            <td class="text-center bold">배송비</td>
+            <td class="text-center bold">합계금액</td>
+            <td class="text-center bold">배송상태</td>
+            <td class="text-center bold">OK캐쉬백</td>
+        </tr>
+        <tr class="class_refund">
+            <td class="text-center">
+                <input class="optCheck rows" name="optCheck" type="checkbox"
+                       value="주문번호"
+                       data-po_idx="상품코드"
+                       data-optn_cd="옵션번호"
+                       data-optn_type="cnt opt add dlvr"
+                       data-oitemno=""
+                       data-adno=""
+                       data-cnt=""
+                       data-max_cnt=""
+                       data-origin_cnt=""
+                       data-is_cnt=""
+                       data-rprice=""
+                       data-uprice=""
+                       data-tprice=""
+                       data-gprice=""
+                       data-copn_amnt=""
+                       data-cart_copn_amnt=""
+                       data-cart_copn=""
+                       data-rsmn_use_amnt=""
+                       data-okcashbag_point=""
+                       data-dprice=""
+                       data-refund_yn=""
+                       data-copn_unit_amnt=""
+                       data-cart_copn_unit_amnt=""
+                       data-rsmn_unit_amnt=""
+                       data-okcashbag_unit_point=""
+                       data-step2=""
+                       data-ovalue="">
+            </td>
+            <td class="text-left">bj_ordnum</td>
+            <td class="text-left">po_idx</td>
+            <td class="text-left">po_title</td>
+            <td class="text-left">option['type']</td>
+            <td class="text-right">uprice</td>
+            <td class="text-right" data-cnt="3">
+                <select class="optCnt">
+                    <option value="3">3</option>
+                </select>
 
+            </td>
+            <td class="text-right">gprice</td>
+            <td class="text-right">copn_amnt</td>
+            <td class="text-right">cart_copn_amnt</td>
+            <td class="text-right">rsmn_use_amnt</td>
+            <td class="text-right">dprice</td>
+            <td class="text-right">tprice</td>
+            <td class="text-center">step2</td>
+            <td class="text-right">okcashbag_point']</td>
+        </tr>
+        <tr>
+            <td class="active text-center bold" colspan="6">합계</td>
+            <td class="active text-right bold">cnt_snum개</td>
+            <td class="active text-right bold">tprice_sum</td>
+            <td class="active text-right bold">copn_amnt</td>
+            <td class="active text-right bold">cart_copn_amnt</td>
+            <td class="active text-right bold">rsmn_use_amnt</td>
+            <td class="active text-right bold">dprice_sum</td>
+            <td class="active text-right bold">total_price</td>
+            <td class="active text-right bold">-</td>
+            <td class="active text-center bold">-</td>
+            <td class="active text-right bold">okcashbag_point</td>
+            <td class="active text-center bold"></td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="cover">
+                <div>CS구분
+                    <select id="cs_dvsn">
+                        <option value="0">구매자귀책</option>
+                        <option value="1">판매자귀책</option>
+                    </select>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <td class="active text-center bold" rowspan="0" width="15%">환불계산기</td>
+                </tr>
+                <input id="re_tprice" class="form-control text-right" type="hidden" disabled value="<?= $data['total_price'] - $okcashbag_point ?>">
+                <tr>
+                    <td class="active bold">① 총 주문금액</td>
+                    <td><input id="total_amnt" class="form-control text-right" type="text" disabled
+                               value="<?= $data['total_price'] - $okcashbag_point + $cprice ?>"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">② 환불옵션금액</td>
+                    <td><input id="re_opt_amnt" class="form-control calculator text-right" type="text" disabled
+                               value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">③ 반환상품쿠폰금액</td>
+                    <td><input id="re_copn_amnt" class="form-control calculator text-right" type="text" disabled
+                               value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">④ 반환장바구니쿠폰금액</td>
+                    <td><input id="re_cart_copn_amnt" class="form-control calculator text-right" type="text" disabled
+                               value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">⑤ 반환적립금금액</td>
+                    <td><input id="re_rsmn_amnt" class="form-control calculator text-right" type="text" disabled
+                               value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">⑥ 반환OK캐쉬백금액</td>
+                    <td><input id="re_okcashbag_point" class="form-control calculator text-right" type="text" disabled
+                               value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">⑦ 환불주문금액 (②-③-④-⑤-⑥)</td>
+                    <td><input id="refund_amnt" class="form-control text-right" type="text" disabled value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">⑧ 환불배송비(+도서산간 배송비)</td>
+                    <td><input id="re_dprice" class="form-control calculator text-right" type="text" disabled value="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="active bold">⑨ 고객부담 원배송비</td>
+                    <td><input id="one_dprice" class="form-control text-right" type="text" value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">⑩ 고객부담 회수배송비</td>
+                    <td><input id="return_dprice" class="form-control text-right" type="text" value="0"></td>
+                </tr>
+                <tr class="warning">
+                    <td class="bold">⑪ 실제환불금액 (⑦+⑧-⑨-⑩)</td>
+                    <td><input id="repay" class="form-control text-right repay" type="text" disabled value="0"></td>
+                </tr>
+                <tr>
+                    <td class="active bold">환불 시 잔액 (①-⑪)</td>
+                    <td><input id="balance_amnt" class="form-control text-right" type="text" disabled
+                               value="<?= $data['total_price'] - $okcashbag_point ?>"></td>
+                </tr>
+                <tr class="rprice_area" style="display: none;">
+                    <td class="active bold">수기환불 공급가</td>
+                    <td><input id="rprice_amnt" class="form-control text-right" type="text" disabled value="0"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <table class="table table-bordered">
+                <input type="hidden" id="cprice" class="cprice">
+                <input type="text" id="broken" class="form-control" style="width:20%">
+                <tr>
+                    <td class="active text-center bold " width="30%">환불액</td>
+                    <td class="text-right"><input type='text' class="form-control bankprice repay" readonly></td>
+                </tr>
+                <tr>
+                    <td class="active text-center bold " width="30%">반환 OK캐쉬백 금액</td>
+                    <td class="text-right"><input type='text' class="form-control" id="re_okcashbag" readonly></td>
+                </tr>
+                <tr>
+                    <td class="active text-center bold" width="30%">결제자</td>
+                    <td class="text-right">
+                        <input type='text' class="form-control bankowner"
+                               value="<?= !empty($data['cs_info']['holdername']) ? $data['cs_info']['holdername'] : '' ?>">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+        </ul>
+    </footer>
+</div>
 </body>
 </html>
