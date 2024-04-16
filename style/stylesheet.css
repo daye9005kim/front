@@ -4,3 +4,6 @@ body {
 .my-mg {
     margin-top: 1rem;
 }
+.calculator-area input {
+    width: 100%;
+}

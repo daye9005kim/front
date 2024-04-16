@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Order Cancellation Calculator</title>
+    <title>My Toys</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/stylesheet.css" rel="stylesheet">
 </head>
@@ -14,22 +14,15 @@
 <header class="p-3 text-bg-dark">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
-            </ul>
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" id="my-navi"></ul>
         </div>
     </div>
 </header>
 <div class="container my-mg">
-    <table class="table table-bordered align-middle text-center"">
+    <table class="table table-bordered align-middle text-center">
         <tr class="table-active">
             <td class="text-center"><input id="allCheck" type="checkbox" class="optCheck"></td>
             <td class="text-center bold">주문번호</td>
-            <td class="text-center bold">업체명</td>
             <td class="text-center bold">상품명</td>
             <td class="text-center bold">옵션명</td>
             <td class="text-center bold">단가</td>
@@ -42,18 +35,17 @@
             <td class="text-center bold">합계금액</td>
         </tr>
         <tr>
-            <td class="text-center" style="user-select: none;">
+            <td class="text-center">
                 <input class="optCheck rows" name="optCheck" type="checkbox" value="17131464851202510000000"
                        data-po_idx="10000000" data-optn_cd="0" data-optn_type="cnt" data-oitemno="16164044"
                        data-cnt="2" data-max_cnt="2" data-origin_cnt="2" data-is_cnt="false" data-rprice="13087"
-                       data-uprice="17450" data-tprice="33006" data-gprice="34900" data-copn_amnt="0"
+                       data-uprice="17450" data-tprice="33006" data-gprice="34900" data-copn_amnt="3490"
                        data-cart_copn_amnt="1745" data-cart_copn="1" data-rsmn_use_amnt="149"
-                       data-dprice="0" data-cprice="0" data-refund_yn="N" data-copn_unit_amnt="0"
+                       data-dprice="0" data-cprice="0" data-refund_yn="N" data-copn_unit_amnt="1745"
                        data-cart_copn_unit_amnt="872" data-rsmn_unit_amnt="74"
                        data-step2="1R" data-ovalue="">
             </td>
             <td class="text-left">17131464851202510000000</td>
-            <td class="text-left">AAAA</td>
             <td class="text-left">오메가3 비타민D,E</td>
             <td class="text-left">-</td>
             <td class="text-right">17,450</td>
@@ -64,14 +56,14 @@
                 </select>
             </td>
             <td class="text-right">34,900</td>
-            <td class="text-right">0</td>
+            <td class="text-right">3,490</td>
             <td class="text-right">1,745</td>
             <td class="text-right">149</td>
             <td class="text-right">0</td>
-            <td class="text-right">33,006</td>
+            <td class="text-right">29,516</td>
         </tr>
         <tr>
-            <td class="text-center" style="user-select: none;">
+            <td class="text-center">
                 <input class="optCheck rows" name="optCheck" type="checkbox" value="17131464851202510000001"
                        data-po_idx="10000001" data-optn_cd="0" data-optn_type="cnt" data-oitemno="16164046"
                        data-cnt="1" data-max_cnt="1" data-origin_cnt="1" data-is_cnt="false" data-rprice="14175"
@@ -82,13 +74,14 @@
                        data-step2="1R" data-ovalue="">
             </td>
             <td class="text-left">17131464851202510000001</td>
-            <td class="text-left">BBBB</td>
             <td class="text-left">프로폴리스,아연 대용량</td>
             <td class="text-left">-</td>
             <td class="text-right">18,900</td>
-            <td class="text-right" data-cnt="1"><select class="optCnt">
-                <option value="1">1</option>
-            </select></td>
+            <td class="text-right" data-cnt="1">
+                <select class="optCnt">
+                    <option value="1">1</option>
+                </select>
+            </td>
             <td class="text-right">18,900</td>
             <td class="text-right">0</td>
             <td class="text-right">945</td>
@@ -97,7 +90,7 @@
             <td class="text-right">17,875</td>
         </tr>
         <tr>
-            <td class="text-center" style="user-select: none;">
+            <td class="text-center">
                 <input class="optCheck rows" name="optCheck" type="checkbox" value="17131464851202510000002"
                        data-po_idx="10000002" data-optn_cd="56219" data-optn_type="opt" data-oitemno="16164047"
                        data-cnt="4" data-max_cnt="4" data-origin_cnt="4" data-is_cnt="false"
@@ -108,7 +101,6 @@
                        data-step2="1R" data-ovalue="1) 1병-6개월분">
             </td>
             <td class="text-left">17131464851202510000002</td>
-            <td class="text-left">CCCC</td>
             <td class="text-left">간에좋은 데일리 밀크씨슬 대용량</td>
             <td class="text-left"> 1) 1병-6개월분</td>
             <td class="text-right">6,200</td>
@@ -128,7 +120,7 @@
             <td class="text-right">23,455</td>
         </tr>
         <tr>
-            <td class="text-center" style="user-select: none;">
+            <td class="text-center">
                 <input class="optCheck rows" name="optCheck" type="checkbox" value="17131464851202510000003"
                        data-po_idx="10000003" data-optn_cd="76047" data-optn_type="opt" data-oitemno="16164045"
                        data-cnt="1" data-max_cnt="1" data-origin_cnt="1" data-is_cnt="false"
@@ -140,7 +132,6 @@
                        data-ovalue="옵션1) 감마리놀렌산 보라지유 (1병-6개월분)">
             </td>
             <td class="text-left">17131464851202510000003</td>
-            <td class="text-left">DDDD</td>
             <td class="text-left">감마리놀렌산 보라지유</td>
             <td class="text-left">옵션1) 감마리놀렌산 보라지유 (1병-6개월분)</td>
             <td class="text-right">24,800</td>
@@ -156,39 +147,62 @@
             <td class="text-right">0</td>
             <td class="text-right">23,454</td>
         </tr>
-        <tr>
-            <td class="active text-center bold" colspan="6">합계</td>
-            <td class="active text-right bold">8개</td>
-            <td class="active text-right bold">103,400</td>
-            <td class="active text-right bold">0</td>
-            <td class="active text-right bold">5,170</td>
-            <td class="active text-right bold">440</td>
-            <td class="active text-right bold">0</td>
-            <td class="active text-right bold">97,790</td>
+        <tr class=" ">
+            <td class="text-center">
+                <input class="optCheck rows" name="optCheck" type="checkbox" value="17131464851202510000003"
+                       data-po_idx="10000003" data-optn_cd="0" data-optn_type="dlvr" data-oitemno="16164045"
+                       data-adno="" data-cnt="0" data-max_cnt="0" data-origin_cnt="0" data-is_cnt="false"
+                       data-rprice="0" data-uprice="0" data-tprice="3000" data-gprice="0" data-copn_amnt="0"
+                       data-cart_copn_amnt="0" data-cart_copn="" data-rsmn_use_amnt="0" data-okcashbag_point="0"
+                       data-dprice="3000" data-cprice="0" data-refund_yn="N" data-copn_unit_amnt="0"
+                       data-cart_copn_unit_amnt="0" data-rsmn_unit_amnt="0" data-okcashbag_unit_point="0"
+                       data-step2="1R" data-ovalue="배송비">
+            </td>
+            <td class="text-left"></td>
+            <td class="text-left"></td>
+            <td class="text-left"> 배송비</td>
+            <td class="text-right">0</td>
+            <td class="text-right" data-cnt="0">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">0</td>
+            <td class="text-right">3,000</td>
+            <td class="text-right">3,000</td>
+        </tr>
+        <tr class="table-active">
+            <td class="text-center bold" colspan="5">합계</td>
+            <td class="text-right bold">8개</td>
+            <td class="text-right bold">103,400</td>
+            <td class="text-right bold">3,490</td>
+            <td class="text-right bold">5,170</td>
+            <td class="text-right bold">440</td>
+            <td class="text-right bold">3,000</td>
+            <td class="text-right bold">100,790</td>
         </tr>
     </table>
 </div>
 <div class="container">
+    <div style="margin-bottom: 5px">
+        <div>
+            <select id="cs_dvsn">
+                <option value="0">구매자귀책</option>
+                <option value="1">판매자귀책</option>
+            </select>
+            <span id="broken"></span>
+        </div>
+    </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="cover">
-                <div>
-                    <span>귀책사유</span>
-                    <select id="cs_dvsn">
-                        <option value="0">구매자귀책</option>
-                        <option value="1">판매자귀책</option>
-                    </select>
-                </div>
-            </div>
-            <table class="table table-bordered">
+        <div class="col-md-6 calculator-area">
+            <table class="table table-bordered align-middle">
                 <tr>
-                    <td class="active text-center bold" rowspan="0">환불계산기</td>
+                    <td class="table-active text-center bold" rowspan="0">환불계산기</td>
                 </tr>
                 <input type="hidden" id="re_tprice" name="re_tprice" class="text-right" value="0" disabled>
                 <tr>
                     <td class="active bold">① 총 주문금액</td>
                     <td>
-                        <input type="text" id="total_amnt" name="total_amnt" class="text-right"  value="" disabled>
+                        <input type="text" id="total_amnt" name="total_amnt" class="text-right"  value="0" disabled>
                     </td>
                 </tr>
                 <tr>
@@ -216,57 +230,74 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="active bold">⑦ 환불주문금액 (②-③-④-⑤)</td>
+                    <td class="active bold">⑥ 환불주문금액 (②-③-④-⑤)</td>
                     <td>
                         <input type="text" id="refund_amnt" class="text-right" value="0" disabled>
                     </td>
                 </tr>
                 <tr>
-                    <td class="active bold">⑧ 환불배송비(+도서산간 배송비)</td>
+                    <td class="active bold">⑦ 환불배송비</td>
                     <td>
                         <input type="text" id="re_dprice" class="calculator text-right" value="0" disabled>
                     </td>
                 </tr>
                 <tr>
-                    <td class="active bold">⑨ 고객부담 원배송비</td>
+                    <td class="active bold">⑧ 차감금액</td>
                     <td>
                         <input type="text" id="one_dprice" class="text-right" value="0">
                     </td>
                 </tr>
                 <tr style="display: none">
-                    <td class="active bold">⑩ 고객부담 회수배송비</td>
+                    <td class="active bold">⑨ 고객부담 회수배송비</td>
                     <td>
                         <input type="text" id="return_dprice" class="text-right" value="0">
                     </td>
                 </tr>
                 <tr class="warning">
-                    <td class="bold">⑪ 실제환불금액 (⑦+⑧-⑨)</td>
+                    <td class="bold">⑨ 실제환불금액 (⑥+⑦-⑧)</td>
                     <td>
                         <input type="text" id="repay" class="text-right repay" value="0" disabled>
                     </td>
                 </tr>
                 <tr>
-                    <td class="active bold">환불 시 잔액 (①-⑪)</td>
+                    <td class="active bold">환불 시 잔액 (①-⑨)</td>
                     <td>
                         <input type="text" id="balance_amnt" class="text-right" value="0" disabled >
-                    </td>
-                </tr>
-                <tr class="rprice_area" style="display: none;">
-                    <td class="active bold">수기환불 공급가</td>
-                    <td>
-                        <input type="text" id="rprice_amnt" class="text-right" value="0" disabled>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="col-md-6">
+            <input type="hidden" id="cprice" class="cprice">
             <table class="table table-bordered">
-                <input type="hidden" id="cprice" class="cprice">
-                <input type="text" id="broken" disabled>
+                <tbody>
                 <tr>
-                    <td class="active text-center bold">환불액</td>
-                    <td class="text-right"><input type='text' class="bankprice repay" readonly></td>
+                    <th class="table-active" colspan="2">
+                        <strong>장바구니 쿠폰 정보</strong>
+                    </th>
                 </tr>
+                <tr>
+                    <td>쿠폰명(유효기간)</td>
+                    <td>장바구니 5% 쿠폰</td>
+                </tr>
+                <tr>
+                    <td>적용금액 제한</td>
+                    <td>결제 금액이 30,000원 이상인 경우 5% 할인</td>
+                </tr>
+                <tr>
+                    <th class="table-active" colspan="2">
+                        <strong>상품 쿠폰 정보</strong>
+                    </th>
+                </tr>
+                <tr>
+                    <td>쿠폰명(유효기간)</td>
+                    <td>상품 10%할인 쿠폰</td>
+                </tr>
+                <tr>
+                    <td>적용금액 제한</td>
+                    <td>결제 금액이 5,000원 이상인 경우 10% 할인</td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>
