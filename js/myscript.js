@@ -104,7 +104,7 @@ $(document).ready(function () {
     })
 
     //상품 취소 버튼
-    $("#myModal .btn-cancel").click(function () {
+    $("#btn-cancel").click(function () {
         //체크박스 확인
         allCheckboxController();
         if (!optCheck.is(":checked")) {
@@ -113,7 +113,7 @@ $(document).ready(function () {
         }
         //환불금액
         const repay = $("#repay").val() || 0;
-        if (parseInt(repay) < 1 && !(ptype === 'RF' || ptype === 'OK')) {
+        if (parseInt(repay) < 1) {
             alert('환불액을 확인 하십시오.');
             return false;
         }
@@ -141,7 +141,7 @@ $(document).ready(function () {
                 return false; //break
             }
             items.push({
-                "bj_ordnum": $(this).val(),
+                "order_sno": $(this).val(),
                 "po_idx": $(this).data("po_idx"),
                 "oitemno": $(this).data("oitemno"),
                 "cancelcnt": $(this).closest('tr').find('select').val(),
@@ -176,47 +176,7 @@ $(document).ready(function () {
             return false;
         }
 
-        //data
-        const param = {
-            "type": type,   //전체취소, 옵션취소, 배송비, 수기환불 취소
-            'ordnum': ordnum,
-            "repay": repay,
-            "cprice": cprice,
-            "items": items,
-            "cs_dvsn": $("#cs_dvsn").val(),
-        };
-        // console.log(param);
-        // return false;
-        const $btn = $(this).button('loading');
-
-        $.ajax({
-            type: 'post',
-            contentType: "application/json",
-            dataType: 'json',
-            url: '/neworder/cancel',
-            data: param,
-            success: function (request) {
-                console.log(request);
-                alert(request);
-                location.reload();
-            },
-            complete: function () {
-                $btn.button('reset');
-            },
-            error: function (request, status, error) {
-                let add_msg = '';
-                if (request.status === 408) {
-                    $("#manual").trigger("click");
-                }
-                if (request.status === 404) {
-                    add_msg = "\n위 주문건은 취소/반품 상태가 아닙니다.\n취소/반품 접수 후 처리 가능합니다.";
-                }
-                alert(request.responseJSON + add_msg);
-                $btn.button('reset');
-                console.log('code: ' + request.status + "\n" + 'message: ' + request.responseJSON + "\n" + 'error: ' + error);
-            }
-        });
-
+        alert("정상 취소 입니다.");
     });
 
     //금액 셋팅
