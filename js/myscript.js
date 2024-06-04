@@ -48,6 +48,9 @@ $.fn.setNavigation = function () {
 $(document).ready(function () {
     const cart_copn_aply_rstr_amnt = 30000
     const optCheck = $("input[name='optCheck']");
+    //토스트
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance($("#broken"))
+    let toastBody = $(".toast-body");
 
     $("#my-navi").setNavigation();
 
@@ -68,7 +71,7 @@ $(document).ready(function () {
     });
 
     //귀책 사유 구분
-    $("#cs_dvsn").on("click", function () {
+    $("input[name='cs_dvsn']").on("click", function () {
         setRefundCalculator();
     });
 
@@ -237,22 +240,26 @@ $(document).ready(function () {
             cartCopn_cart_copn_amnt += $(this).data("cart_copn_amnt");
         })
 
-        $("#broken").text("일반취소");
+        toastBody.text("일반취소");
         const cartCopn_amnt = cartCopn_gprice - cartCopn_copn_amnt;
-        const cs_dvsn = $("#cs_dvsn").val();
+        const cs_dvsn = $("input[name='cs_dvsn']:checked").val();
+        const check_cnt = $("input[name='optCheck']:checked").length;
         if (cartCopn_amnt > 0) {
             //장바구니쿠폰 금액 미달 && 구매자 귀책일때만 && 옵션 수량 취소가 포함되지 않을때
             if (cartCopn_amnt < cart_copn_aply_rstr_amnt && cs_dvsn === '0' && !cartCopn_isCnt) {
-                $("#broken").text("장바구니 쿠폰 사용 조건 미달");
+                toastBody.text("장바구니 쿠폰 사용 조건 부적합");
                 cart_copn_amnt += cartCopn_cart_copn_amnt;
 
                 //환불 금액이 0,마이너스면 상품쿠폰처럼
-                const check_cnt = $("input[name='optCheck']:checked").length;
                 if (check_cnt > 0 && gprice - copn_amnt - cart_copn_amnt - rsmn_use_amnt < 1) {
-                    $("#broken").text("마이너스금액 일반취소");
+                    toastBody.text("마이너스금액 일반취소");
                     cart_copn_amnt = cart_copn_amnt - cartCopn_cart_copn_amnt
                 }
             }
+        }
+
+        if (check_cnt > 0) {
+            toastBootstrap.show();
         }
 
         $("#re_tprice").val(tprice);
