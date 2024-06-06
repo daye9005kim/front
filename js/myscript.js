@@ -247,7 +247,7 @@ $(document).ready(function () {
         if (cartCopn_amnt > 0) {
             //장바구니쿠폰 금액 미달 && 구매자 귀책일때만 && 옵션 수량 취소가 포함되지 않을때
             if (cartCopn_amnt < cart_copn_aply_rstr_amnt && cs_dvsn === '0' && !cartCopn_isCnt) {
-                toastBody.text("장바구니 쿠폰 사용 조건 부적합");
+                toastBody.text("장바구니 쿠폰 사용 조건 부합");
                 cart_copn_amnt += cartCopn_cart_copn_amnt;
 
                 //환불 금액이 0,마이너스면 상품쿠폰처럼
