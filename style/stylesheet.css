@@ -6,4 +6,5 @@ body {
 }
 .calculator-area input {
     width: 100%;
+    text-align: right;
 }
