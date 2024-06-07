@@ -160,7 +160,7 @@ $(document).ready(function () {
             return false;
         }
 
-        //차감금액
+        //제외금액
         let cprice = parseInt($("#cprice").val()) || 0;
 
         if (!confirm('상품을 취소 하시겠습니까?')) {
@@ -168,7 +168,7 @@ $(document).ready(function () {
         }
 
         if (cprice > 0) {
-            if (!confirm("차감금액이 입력 되었습니다.\n차감금액 " + cprice + "원을 제외 하고 " + repay + "원을 취소 하시겠습니까?")) {
+            if (!confirm("제외금액이 입력 되었습니다.\n제외금액 " + cprice + "원을 제외 하고 " + repay + "원을 취소 하시겠습니까?")) {
                 return false;
             }
         }
@@ -296,7 +296,7 @@ $(document).ready(function () {
         const balance_amnt = total_amnt - repay;
         $("#balance_amnt").val(isNaN(balance_amnt) ? 0 : balance_amnt);
 
-        //차감금액
+        //제외금액
         const cprice = one_dprice + return_dprice;
         $("#cprice").val(isNaN(cprice) ? 0 : cprice);
 
